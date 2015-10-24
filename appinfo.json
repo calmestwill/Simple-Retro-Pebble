@@ -1,0 +1,36 @@
+{
+    "appKeys": {},
+    "capabilities": [
+        ""
+    ],
+    "companyName": "will.b.spooner@gmail.com",
+    "longName": "Time",
+    "projectType": "native",
+    "resources": {
+        "media": [
+            {
+                "file": "fonts/perfect dos.ttf",
+                "name": "PERFECT_DOS_24",
+                "type": "font"
+            },
+            {
+                "file": "fonts/perfect dos.ttf",
+                "name": "PERFECT_DOS_48",
+                "type": "font"
+            },
+            {
+                "file": "images/background.png",
+                "name": "BACKGROUND_IMAGE",
+                "type": "png"
+            }
+        ]
+    },
+    "sdkVersion": "2",
+    "shortName": "Time",
+    "uuid": "34fe3f1d-a82e-43bd-ac0d-8d94776e628b",
+    "versionCode": 1,
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": true
+    }
+}
