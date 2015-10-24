@@ -4,10 +4,16 @@
         ""
     ],
     "companyName": "will.b.spooner@gmail.com",
-    "longName": "Time",
+    "longName": "Simple Retro",
     "projectType": "native",
     "resources": {
         "media": [
+            {
+                "file": "images/icon.png",
+                "menuIcon": true,
+                "name": "ICON",
+                "type": "png"
+            },
             {
                 "file": "fonts/perfect dos.ttf",
                 "name": "PERFECT_DOS_24",
@@ -26,10 +32,10 @@
         ]
     },
     "sdkVersion": "2",
-    "shortName": "Time",
+    "shortName": "Simple Retro",
     "uuid": "34fe3f1d-a82e-43bd-ac0d-8d94776e628b",
     "versionCode": 1,
-    "versionLabel": "1.0",
+    "versionLabel": "1.1",
     "watchapp": {
         "watchface": true
     }
