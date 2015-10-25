@@ -9,9 +9,19 @@
     "resources": {
         "media": [
             {
+                "file": "images/bt-icon-disconnected.png",
+                "name": "IMAGE_BLUETOOTH_DISCONNECTED",
+                "type": "png"
+            },
+            {
+                "file": "images/bt-icon-connected.png",
+                "name": "IMAGE_BLUETOOTH_CONNECTED",
+                "type": "png"
+            },
+            {
                 "file": "images/icon.png",
                 "menuIcon": true,
-                "name": "ICON",
+                "name": "IMAGE_ICON",
                 "type": "png"
             },
             {
@@ -26,7 +36,7 @@
             },
             {
                 "file": "images/background.png",
-                "name": "BACKGROUND_IMAGE",
+                "name": "IMAGE_BACKGROUND",
                 "type": "png"
             }
         ]
