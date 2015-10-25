@@ -3,14 +3,16 @@
 static Window *s_main_window;
 static TextLayer *s_time_layer, *s_date_layer;
 static GFont s_time_font, s_date_font;
-static BitmapLayer *s_background_layer, *s_bt_disconnected_layer, *s_bt_connected_layer;
-static GBitmap *s_background_bitmap, *s_bt_disconnected_bitmap, *s_bt_connected_bitmap;
+static BitmapLayer *s_background_layer, *s_bt_disconnected_layer, *s_bt_connected_layer, *s_charging_layer;
+static GBitmap *s_background_bitmap, *s_bt_disconnected_bitmap, *s_bt_connected_bitmap, *s_charging_bitmap;
 static int s_battery_level;
 static Layer *s_battery_layer;
 
 static void battery_callback (BatteryChargeState state) {
+	bool charging = state.is_charging;
 	s_battery_level = state.charge_percent;
 	layer_mark_dirty(s_battery_layer);
+	layer_set_hidden(bitmap_layer_get_layer(s_charging_layer), !charging);
 }
 
 static void bluetooth_callback (bool connected) {
@@ -92,12 +94,20 @@ static void main_window_load (Window *window) {
 	layer_set_update_proc(s_battery_layer, battery_update_proc);
 	layer_add_child(window_get_root_layer(window), s_battery_layer);
 	
+	//charging status
+	s_charging_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_CHARGING);
+	s_charging_layer = bitmap_layer_create(GRect(100, 90, 30, 30));
+	
+	bitmap_layer_set_bitmap(s_charging_layer, s_charging_bitmap);
+	layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(s_charging_layer));
+	
 	//bluetooth status
 	s_bt_disconnected_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BLUETOOTH_DISCONNECTED);
 	s_bt_connected_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BLUETOOTH_CONNECTED);
 	
 	s_bt_disconnected_layer = bitmap_layer_create(GRect(59, 90, 30, 30));
 	s_bt_connected_layer = bitmap_layer_create(GRect(59, 90, 30, 30));
+	
 	bitmap_layer_set_bitmap(s_bt_disconnected_layer, s_bt_disconnected_bitmap);
 	bitmap_layer_set_bitmap(s_bt_connected_layer, s_bt_connected_bitmap);
 	layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(s_bt_disconnected_layer));
@@ -116,6 +126,8 @@ static void main_window_unload (Window *window) {
 	bitmap_layer_destroy(s_bt_connected_layer);
 	gbitmap_destroy(s_bt_disconnected_bitmap);
 	bitmap_layer_destroy(s_bt_disconnected_layer);
+	gbitmap_destroy(s_charging_bitmap);
+	bitmap_layer_destroy(s_charging_layer);
 }
 
 static void init () {
